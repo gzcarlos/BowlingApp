@@ -8,32 +8,38 @@ import java.io.IOException;
 
 public class Filer {
 	private File file;
-	private String takenFile = "";
+	private boolean archivoWorks = true;
 	
 	public Filer(String archivo){
-		file = new File(archivo);
+		if(archivo != null || !archivo.equals(""))
+			file = new File(archivo);
+		else
+			archivoWorks = false;
 	}
 	
 	public String[] readFile(){
 		String[] lines = new String[42];
-		int linesPointer = 0;
+		if(archivoWorks){
+			
+			int linesPointer = 0;
 		
-		try{
+			try{
 			
-			FileReader freader = new FileReader(file);
-			BufferedReader reader = new BufferedReader(freader);
-			String line = "";
+				FileReader freader = new FileReader(file);
+				BufferedReader reader = new BufferedReader(freader);
+				String line = "";
 			
-			while((line = reader.readLine()) != null){
-				lines[linesPointer] = line;
-				++linesPointer;
+				while((line = reader.readLine()) != null){
+					lines[linesPointer] = line;
+					++linesPointer;
+				}
+			
+			
+			}catch (FileNotFoundException e){
+				e.printStackTrace();
+			} catch (IOException e){
+				e.printStackTrace();
 			}
-			
-			
-		}catch (FileNotFoundException e){
-			e.printStackTrace();
-		} catch (IOException e){
-			e.printStackTrace();
 		}
 		
 		return lines;
