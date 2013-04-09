@@ -4,8 +4,8 @@ public class GamePlayed {
 	
 	private Filer filer;
 	
-	private String[] player1;
-	private String[] player2;
+	private int[] player1;
+	private int[] player2;
 	private String[] scores;
 	
 	public GamePlayed(Filer fr){
@@ -14,8 +14,8 @@ public class GamePlayed {
 		ErrorManager errors = new ErrorManager(filer);
 		
 		if(!errors.getErrorAdvisor()){
-			player1 = new String[21];
-			player2 = new String[21];
+			player1 = new int[21];
+			player2 = new int[21];
 			
 			scores =  filer.readFile();
 			
@@ -23,11 +23,11 @@ public class GamePlayed {
 		}
 	}
 	
-	public String[] getPlayer1(){
+	public int[] getPlayer1(){
 		return player1;
 	}
 	
-	public String[] getPlayer2(){
+	public int[] getPlayer2(){
 		return player2;
 	}
 	
@@ -53,57 +53,18 @@ public class GamePlayed {
 			//Setting values
 			if(scores[looper] != null)
 				value = Integer.parseInt(scores[looper]);
-			if(shot == 1) 
-				preValue = value;
+			//if(shot == 1) 
+				//preValue = value;
 			
 			//Setting some game rules
 			
 			//Strike not in Frame10
-			if(value == 10 && shot == 1 && actualPlayer == 1)
-				player1[p1Counter] = "x";
-			if(shot == 1 && value == 10 && actualPlayer == 2)
-				player2[p2Counter] = "x";
+			if(actualPlayer == 1)
+				player1[p1Counter] = value;
+			if(actualPlayer == 2)
+				player2[p2Counter] = value;
 			
-			//Spare not in Frame10
-			//modified: not the (preValue != 10) condition
-			if(actualFrame != 10 && shot == 2 && preValue != 10 && (preValue + value) == 10 && actualPlayer == 1)
-				player1[p1Counter] = "/";
-			if(actualFrame != 10 && shot == 2 && preValue != 10 &&  (preValue + value) == 10 &&actualPlayer == 2)
-				player2[p2Counter] = "/";
 			
-			//Strikes Frame10 shots = 1,3
-			//need to modify: the Strike in fame != 10 do it in the 1st shot
-			if(actualFrame == 10 && shot != 2 && value == 10 && actualPlayer == 1)
-				player1[p1Counter] = "x";
-			if(actualFrame == 10 && shot != 2 && value  == 10 && actualPlayer == 2)
-				player2[p2Counter] = "x";
-			
-			//Spare Frame10 shot = 2
-			//need to modify: the Spare in fame != 10 do it in the 2nd shot
-			if(actualFrame == 10 && shot == 2 && (preValue + value) == 10 && actualPlayer == 1)
-				player1[p1Counter] = "/";
-			if(actualFrame == 10 && shot == 2 && (preValue + value) == 10 && actualPlayer == 2)
-				player2[p2Counter] = "/";
-			
-			//Not Strike
-			if(shot == 1 && value != 10 && actualPlayer == 1)
-				player1[p1Counter] = "" + value;
-			if(shot == 1 && value != 10 && actualPlayer == 2)
-				player2[p2Counter] = "" + value;
-			
-			//Not Spare
-			if(shot == 2 && (preValue + value) != 10 && actualPlayer == 1)
-				player1[p1Counter] = "" + value;
-			if(shot == 2 && (preValue + value) != 10 && actualPlayer == 2)
-				player2[p2Counter] = "" + value;
-			
-			//3rd shot - USELESSSSSSSSSSSSSSSSS
-			if(shot == 3 && actualFrame == 10 && actualPlayer == 1)
-				player1[p1Counter] = "" + value;
-			if(shot == 3 && actualFrame == 10 && actualPlayer == 2)
-				player2[p2Counter] = "" + value;
-						
-						
 			
 			//Do ALL INCREMENTALS
 			//Last Conditions - Restart, Increment
