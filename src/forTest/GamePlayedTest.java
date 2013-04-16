@@ -36,7 +36,6 @@ public class GamePlayedTest {
 		
 		for(int i = 0; i < 21; ++i)
 			if(capturedP1[i] != p1[i]){
-				//System.out.println("Captured[" + i + "]: " +  capturedP1[i] + ", Pointed[" + i + "]: " + p1[i]);
 				same = false;
 				break;
 			}
