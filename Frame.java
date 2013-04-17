@@ -8,7 +8,7 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JLabel;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class Frame extends javax.swing.JPanel {
 	
 
@@ -28,19 +28,26 @@ public class Frame extends javax.swing.JPanel {
 		c.gridy = 1;
 		add(FS,c);
 		
-		SS = new JLabel("X");
-		c.gridx = 5;
+		SS = new JLabel("O");
+		c.insets = new Insets(0, 16, 0, 0);
+		c.gridx = 2;
 		c.gridy = 1;
 		add(SS,c);
 		
-		TS = new JLabel("X");
-		c.gridx = 5;
-		c.gridy = 3;
+		TS = new JLabel("Z");
+		c.gridx = 3;
+		c.gridy = 1;
 		add(TS,c);
+		
+		TP = new JLabel("U");
+		c.insets = new Insets(8, 0, 0, 0);
+		c.gridx = 2;
+		c.gridy = 2;
+		add(TP,c);
 	}
 	
 	public Frame (){
-		setPreferredSize(new Dimension(85,85));
+		setPreferredSize(new Dimension(100,100));
 		
 		setLayout(new GridBagLayout());
 		FS = new JLabel("X");
@@ -48,10 +55,12 @@ public class Frame extends javax.swing.JPanel {
 		c.gridy = 1;
 		add(FS,c);
 		SS = new JLabel("X");
+		c.insets = new Insets(0, 8, 0, 0);
 		c.gridx = 3;
 		c.gridy = 1;
 		add(SS,c);
 		TP = new JLabel("X");
+		c.insets = new Insets(8, 0, 0, 0);
 		c.gridx = 2;
 		c.gridy = 3;
 		add(TP,c);

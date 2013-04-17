@@ -18,18 +18,29 @@ public class GUI extends JFrame{
 		JPanel Player2 = new JPanel();
 		JPanel organize = new JPanel();
 		
-		GridBagConstraints j = new GridBagConstraints();
+		//GridBagConstraints j = new GridBagConstraints();
 		Player1.setLayout(new GridLayout(0,10));
 		for (int i=0; i<10;++i){
-			Points[i] = new Frame();
-			
-			Player1.add(Points[i],j);
+			if (i == 9){
+				Points[i] = new Frame(true);
+				Player1.add(Points[i]);
+			}
+			else {
+				Points[i] = new Frame();
+				Player1.add(Points[i]);
+			}
 		}
 		
 		Player2.setLayout(new GridLayout(0,10));
 		for (int i=0; i<10;++i){
-			Points[i] = new Frame();
-			Player2.add(Points[i]);
+			if (i == 9){
+				Points[i] = new Frame(true);
+				Player2.add(Points[i]);
+			}
+			else {
+				Points[i] = new Frame();
+				Player2.add(Points[i]);
+			}
 		}
 		
 		
@@ -71,9 +82,7 @@ public class GUI extends JFrame{
 		cont.setSize(5, 5);
 		
 		JPanel Background = new JPanel(bag);
-		//Background.setBounds(this.getX(), this.getY(), this.getWidth()-10, this.getHeight());
 		this.getContentPane().add(Background);
-		//setSize(400, 300);
 		JLabel sentence;
 		JButton explore,prior,next;
 		
@@ -82,7 +91,6 @@ public class GUI extends JFrame{
 		top.add(explore = new JButton("Explorar"));
 		
 		JPanel middle = new JPanel();
-		//middle.setPreferredSize(new Dimension(1500,720));
 		middle.add(organizemiddle());
 		
 		JPanel bottom = new JPanel();
@@ -113,6 +121,18 @@ public class GUI extends JFrame{
 	}
 	
 	public GUI(){
+		int[] Score1 = {10,0,5,5,4,6,1,2,3,4,5,5,10,0,1,9,0,3,3,7,3};
+		int[] Score2 = {10,0,5,5,4,6,1,2,3,4,5,5,10,0,1,9,0,3,3,7,3};
+		
+		Ruler Playr1 = new Ruler();
+		Ruler Playr2 = new Ruler();
+		LogicFrame P1[] = new LogicFrame[10];
+		LogicFrame P2[] = new LogicFrame[10];
+		GameLog Reg = new GameLog();
+		P1 = Playr1.Points(Score1);
+		P2 = Playr2.Points(Score2);
+		
+		Reg.Log(P1, P2);
 		UI();
 	}
 	
