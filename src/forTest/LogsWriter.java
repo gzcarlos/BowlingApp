@@ -15,7 +15,7 @@ public class LogsWriter {
 	
 	
 	public LogsWriter(){
-		path = "Logs.log";
+		path = "TestingLog.log";
 		file = new File(path);
 		
 		if(!fileExist()){
@@ -24,7 +24,7 @@ public class LogsWriter {
 		}
 	}
 	
-	public boolean fileExist() {
+	private boolean fileExist() {
 		
 		if(file.exists())
 			return true;
@@ -32,7 +32,7 @@ public class LogsWriter {
 		return false;
 	}
 	
-	public void createFile(){
+	private void createFile(){
 		
 		try{
 			
@@ -44,7 +44,7 @@ public class LogsWriter {
 		
 	}
 	
-	public int getDayOfMonth(Date actualD){
+	private int getDayOfMonth(Date actualD){
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(actualD);
 		return cal.get(Calendar.DAY_OF_MONTH);
@@ -94,7 +94,7 @@ public class LogsWriter {
 			e.printStackTrace();
 		}
 		
-		++notifier;
+		notifier = 100;
 	}
 
 }
