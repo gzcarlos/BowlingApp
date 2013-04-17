@@ -7,11 +7,12 @@ public class GamePlayed {
 	private int[] player1;
 	private int[] player2;
 	private String[] scores;
+	private ErrorManager errors;
 	
 	public GamePlayed(Filer fr){
 		filer = fr;
 		
-		ErrorManager errors = new ErrorManager(filer);
+		errors = new ErrorManager(filer);
 		
 		if(!errors.getErrorAdvisor()){
 			player1 = new int[21];
